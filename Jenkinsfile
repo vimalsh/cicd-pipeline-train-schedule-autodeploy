@@ -1,8 +1,8 @@
 pipeline {
     agent any
     tools {
-        maven "myMaven7"
-        jdk "myjdk7"
+        maven "myMaven"
+        jdk "myJava8JDK"
     }
     environment {
         DOCKER_IMAGE_NAME = "08091993deadly/train-schedule"
