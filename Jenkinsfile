@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'Jenkins_Slave2' }
+    agent any
     environment {
         DOCKER_IMAGE_NAME = "08091993deadly/train-schedule"
     }
