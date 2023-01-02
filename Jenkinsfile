@@ -1,8 +1,7 @@
 pipeline {
     agent any
     environment {
-        //be sure to replace "bhavukm" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "bhavukm/train-schedule"
+        DOCKER_IMAGE_NAME = "08091993deadly/train-schedule"
     }
     stages {
         stage('Build') {
@@ -31,7 +30,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-vimal') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
@@ -47,7 +46,7 @@ pipeline {
             }
             steps {
                 kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
+                    kubeconfigId: 'kubernetes-vimal',
                     configs: 'train-schedule-kube-canary.yml',
                     enableConfigSubstitution: true
                 )
@@ -64,12 +63,12 @@ pipeline {
                 input 'Deploy to Production?'
                 milestone(1)
                 kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
+                    kubeconfigId: 'kubernetes-vimal',
                     configs: 'train-schedule-kube-canary.yml',
                     enableConfigSubstitution: true
                 )
                 kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
+                    kubeconfigId: 'kubernetes-vimal',
                     configs: 'train-schedule-kube.yml',
                     enableConfigSubstitution: true
                 )
