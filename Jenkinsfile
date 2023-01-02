@@ -9,6 +9,7 @@ pipeline {
     }
     stages {
         stage('Build') {
+            agent any
             steps {
                 echo 'Running build automation'
                 sh './gradlew build --no-daemon'
@@ -16,6 +17,7 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
+            
             steps {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
