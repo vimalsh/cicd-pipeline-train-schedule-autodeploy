@@ -13,3 +13,10 @@ You can run the app with:
     ./gradlew npm_start
 
 Once it is running, you can access it in a browser at http://localhost:8080
+
+
+sudo update-alternatives --config java
+sudo update-alternatives --config java
+nano /etc/environment
+JAVA_HOME=”/your/installation/path/”
+sudo apt remove default-jdk
