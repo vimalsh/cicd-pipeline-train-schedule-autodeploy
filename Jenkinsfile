@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'Jenkins_Slave' }
+    agent any
     tools {
         maven "myMaven"
         jdk "myJava8JDK"
